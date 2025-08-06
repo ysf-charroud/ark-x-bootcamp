@@ -11,6 +11,5 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "xlsx": "^0.18.5"
   }
 }
