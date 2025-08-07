@@ -1,3 +1,5 @@
+import { promises as fs } from "fs";
+
 const cities = [
   { name: "New York", lat: 40.7128, lng: -74.006 },
   { name: "London", lat: 51.5074, lng: -0.1278 },
@@ -10,34 +12,43 @@ const cities = [
   { name: "Dubai", lat: 25.2048, lng: 55.2708 },
   { name: "Rabat", lat: 34.0209, lng: -6.8416 },
 ];
-const apiUrl = "https://api.open-meteo.com/v1/forecast";
-const fetchWeather = async (lat, lng) => {
+
+// this function used to get city name from input file
+const getFileContent = async (path) => {
   try {
-    const response = await fetch(
-      `${apiUrl}?latitude=${lat}&longitude=${lng}&current_weather=true`
-    );
-    if (!response.ok) {
-      throw new Error("Failed to fetch weather data");
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching weather data:", error);
-    return null;
+    const cityName = await fs.readFile(path, "utf8");
+    return cityName.trim();
+  } catch (err) {
+    console.log(err);
   }
 };
-// function returns a random city
-const getRandomCity = () => {
-  const randomIndex = Math.floor(Math.random() * cities.length);
-  return cities[randomIndex];
+
+const fileExists = async (fileName) => {
+  try {
+    await fs.access(fileName);
+    return true;
+  } catch (error) {
+    return false;
+  }
 };
-
-const city = getRandomCity();
-
-// Using async/await to handle the Promise
-const getWeatherData = async () => {
-  const weather = await fetchWeather(city.lat, city.lng);
-  console.log("Weather data for", city.name, ":", weather);
+const createCityFile = async () => {
+  try {
+    const cityName = await getFileContent("./input.txt");
+    const fileName = `${cityName}.txt`;
+    if (await fileExists(fileName)) {
+      fs.unlink(fileName);
+    }
+    const city = cities.find((item) => item.name === cityName);
+    if (city) {
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lng}&current_weather=true`;
+      const res = await fetch(url);
+      const data = await res.json();
+      const { current_weather: weather } = data;
+      fs.writeFile(fileName, JSON.stringify(weather));
+    } else {
+      console.log("City not found");
+      return;
+    }
+  } catch (error) {}
 };
-
-getWeatherData();
+createCityFile();
