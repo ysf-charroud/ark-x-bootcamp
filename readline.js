@@ -8,7 +8,12 @@ const contacts = [];
 // Function to display the main menu
 function displayMenu() {
   rl.question(
-    `\nMenu Options:\n1. Add a contact\n2. List all contacts\n3. Exit\nPlease select an option (1-3): `,
+    `
+    Menu Options: 
+    1. Add a contact 
+    2. List all contacts 
+    3. Exit 
+    Please select an option (1-3): `,
     handleMenuChoice
   );
 }
