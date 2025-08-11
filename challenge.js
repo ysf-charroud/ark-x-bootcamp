@@ -1,9 +1,12 @@
 import Route from "./Route.js";
 import cities from "./cities.js";
+
+// https://api.open-meteo.com/v1/forecast?latitude=XXXX&longitude=YYYY&current_weather=true
+
 const route = new Route();
 const port = 3000;
-route.get("/weather", (req, res) => {
-  city = req.query.city;
+route.get("/weather", async (req, res) => {
+  const city = req.query.city;
 
   // Validate the city query parameter
   if (!city) {
@@ -12,7 +15,23 @@ route.get("/weather", (req, res) => {
     return;
   }
 
-  res.end(JSON.stringify({ city: req.query.city }));
+  // find the city from the cities object
+  const { lat, lng, name } = cities.find(
+    (ct) => ct.name.toLowerCase() === city.toLowerCase()
+  );
+
+  // fetch data from weather api
+  try {
+    const response = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current_weather=true`
+    );
+    const data = await response.json();
+    res.writeHead(200, { "Content-Type": "application/json" });
+    const jsonData = JSON.stringify(data.current_weather);
+    res.end(jsonData);
+  } catch (error) {
+    console.log("Error fetching data");
+  }
 });
 
 route.start(port, () => {

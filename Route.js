@@ -49,6 +49,8 @@ export default class Route {
       }
     });
   }
+
+  
   get(endpoint, callback) {
     if (this.#get.some((route) => route.endpoint === endpoint)) {
       throw new Error(`Endpoint ${endpoint} already exists for GET method`);
