@@ -1,15 +1,16 @@
 {
-  "name": "js",
+  "name": "challenge.js",
   "version": "1.0.0",
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon challenge.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
