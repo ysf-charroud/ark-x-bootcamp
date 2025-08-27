@@ -4,7 +4,10 @@ import session from "express-session";
 import "./strategies/local.js";
 import "./strategies/google.js";
 import AuthMiddleware from "./authMiddleware.js";
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
+const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(
@@ -56,6 +59,6 @@ app.get("/logout", (req, res) => {
     res.send("Logout successful");
   });
 });
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("server is running on port " + 3000);
 });

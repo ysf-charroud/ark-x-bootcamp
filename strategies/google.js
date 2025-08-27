@@ -2,6 +2,7 @@ import passport from "passport";
 import { Strategy } from "passport-google-oauth2";
 import mockUsers from "../users.js";
 
+
 export default passport.use(
   new Strategy(
     {
