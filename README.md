@@ -1,63 +1,36 @@
-# Ark-X Bootcamp Project
-
-This project is a Node.js application that demonstrates user authentication using [Passport.js](http://www.passportjs.org/). It includes local and Google authentication strategies, middleware for authentication, and user management endpoints.
-
-## Features
-- User authentication with Passport.js
-- Local strategy (username/password)
-- Google OAuth strategy
-- Protected routes using authentication middleware
-- REST API endpoints for user management
-
-## Project Structure
-```
-app.js                # Main application entry point
-app.rest              # REST client requests (for testing endpoints)
-authMiddleware.js     # Middleware for route protection
-users.js              # User management routes and logic
-strategies/
-  google.js           # Google OAuth strategy setup
-  local.js            # Local strategy setup
-```
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-### Prerequisites
-- Node.js (v14 or higher recommended)
-- npm
+First, run the development server:
 
-### Installation
-1. Clone the repository:
-   ```sh
-   git clone <repository-url>
-   cd ark-x-bootcamp
-   ```
-2. Install dependencies:
-   ```sh
-   npm install
-   ```
-
-### Configuration
-- Set up your environment variables for Google OAuth and session secrets as needed.
-- Update the configuration in `strategies/google.js` with your Google client credentials.
-
-### Running the Application
-```sh
-node app.js
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-The server will start and listen for requests. Use the endpoints defined in `app.rest` or your preferred API client to test authentication and user routes.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Usage
-- Register and log in with local credentials.
-- Authenticate with Google using the OAuth flow.
-- Access protected routes with valid authentication.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Dependencies
-- [express](https://www.npmjs.com/package/express)
-- [passport](http://www.passportjs.org/)
-- [passport-local](https://www.npmjs.com/package/passport-local)
-- [passport-google-oauth20](https://www.npmjs.com/package/passport-google-oauth20)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## License
-This project is for educational purposes as part of the Ark-X Bootcamp.
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
