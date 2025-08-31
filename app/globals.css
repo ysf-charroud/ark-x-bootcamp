@@ -6,6 +6,7 @@
   --primary: #34967c;
   --secondary: #151117;
   --accent: #ffa800;
+  --border: #E9E9E9;
 }
 
 
@@ -15,4 +16,5 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
+  --color-border: var(--border);
 }

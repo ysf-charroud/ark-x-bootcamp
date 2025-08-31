@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchBar = () => {
   return (
-    <div className="flex rounded-full border min-w-6/12 gap-x-4 border-gray-300 py-2 px-3 items-center ">
+    <div className="flex rounded-full border min-w-6/12 gap-x-4 border-border py-2 px-3 items-center ">
       <div className="flex gap-x-5 items-center grow">
         <div className="flex flex-col grow ml-4">
           <label htmlFor="location">Location</label>
